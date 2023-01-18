@@ -1,0 +1,37 @@
+import random
+
+treasure_map = [
+    "X", "O", "O", "O", "O",
+    "O", "O", "O", "O", "O",
+    "O", "O", "O", "O", "O",
+    "O", "O", "O", "O", "O",
+    "O", "O", "O", "O", "X"
+]
+
+treasure_location = random.randint(0, 24)
+
+def treasure_hunt():
+    print("Welcome to the AI Treasure Hunt!")
+    print("You are given a map with 25 spots, one of which contains a treasure.")
+    print("Enter a number between 0 and 24 to search for treasure.")
+    print("X represents a spot you have already searched.")
+    print("O represents a spot you haven't searched yet.")
+    print("You have 10 attempts to find the treasure.")
+
+    attempts = 0
+    while attempts < 10:
+        user_guess = int(input("Enter a number to search: "))
+        if user_guess == treasure_location:
+            print("Congratulations! You have found the treasure.")
+            return
+        elif treasure_map[user_guess] == "X":
+            print("You have already searched this spot.")
+        else:
+            print("Sorry, no treasure here.")
+            treasure_map[user_guess] = "X"
+            attempts += 1
+            print("Attempts left:", 10 - attempts)
+
+    print("Sorry, you have run out of attempts. The treasure was located at spot", treasure_location)
+
+treasure_hunt()
